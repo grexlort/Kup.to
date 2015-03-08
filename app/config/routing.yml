@@ -1,0 +1,5 @@
+mmm_frontend:
+    resource: "@MmmFrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
