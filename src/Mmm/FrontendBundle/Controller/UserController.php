@@ -17,15 +17,19 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
     /**
-     * @Route("/", name="_aaa_user_list")
+     * @Route("/", name="_mmm_user_list")
      */
     public function indexAction()
     {
-
+        $repository = $this->getDoctrine()->getRepository('MmmFrontendBundle:User');
+        
+        return array(
+            'users' => $repository->findAll()
+        );
     }
 
     /**
-     * @Route("/add", name="_aaa_user_add")
+     * @Route("/add", name="_mmm_user_add")
      */
     public function addAction(Request $request)
     {
@@ -47,7 +51,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/{id}", requirements={"id": "\d+"}, name="_aaa_user_edit")
+     * @Route("/{id}", requirements={"id": "\d+"}, name="_mmm_user_edit")
      */
     public function editAction(Request $request, User $user)
     {
