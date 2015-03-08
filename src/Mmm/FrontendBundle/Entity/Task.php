@@ -37,8 +37,8 @@ class Task {
     private $done;
 
     /**
-     * @var integer
-     * @ORM\Column(name="priority", type="integer", nullable=false)
+     * @var string
+     * @ORM\Column(name="priority", type="string", nullable=false)
      */
     private $priority;
 
