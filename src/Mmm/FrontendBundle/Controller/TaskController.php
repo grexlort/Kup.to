@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
+class TaskController extends Controller
 {
     /**
-     * @Route("/test")
+     * @Route("/tasks")
      */
-    public function indexAction()
-    {
-        return $this->render('MmmFrontendBundle:Default:index.html.twig');
+    public function showTasksAction() {
+
+        return $this->render("MmmFrontendBundle:Task:index.html.twig");
     }
 }
