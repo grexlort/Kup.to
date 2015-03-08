@@ -4,6 +4,7 @@ namespace Mmm\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\UserRepository")
@@ -22,6 +23,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
@@ -29,6 +32,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="password", type="string", nullable=false)
+     * @Assert\NotBlank()
+     *
      */
     private $password;
 
@@ -36,6 +41,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="name", type="string", nullable=false)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -43,6 +49,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $createdAt;
 

@@ -3,6 +3,7 @@
 namespace Mmm\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\TaskRepository")
@@ -21,36 +22,47 @@ class Task {
      * @var string
      *
      * @ORM\Column(name="content", type="string" , nullable=true)
+     * @Assert\NotBlank()
      */
     private $content;
 
     /**
-     * @var date
+     * @var \DateType
      * @ORM\Column(name="due_date", type="date", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $dueDate;
 
     /**
      * @var boolean
      * @ORM\Column(name="done", type="boolean", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {false, true})
      */
     private $done;
 
     /**
      * @var string
      * @ORM\Column(name="priority", type="string", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {false, true})
      */
     private $priority;
 
     /**
      * @var \DateTime
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="createdTasks")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $createdBy;
 
