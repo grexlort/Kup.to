@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class UserController
  * @package Mmm\FrontendBundle\Controller
  * @Route("/user")
- * @Template())
+ * @Template()
  */
 class UserController extends Controller
 {
@@ -69,4 +69,26 @@ class UserController extends Controller
             'form' => $form->createView()
         );
     }
+
+    /**
+     * @Route("/{id}/delete", requirements={"id": "\d+"}, name="_mmm_user_delete")
+     */
+    public function deleteAction(Request $request, User $user)
+    {
+        $form = $this->createForm(new UserType(), $user);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($user);
+            $em->flush($user);
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+
 }
