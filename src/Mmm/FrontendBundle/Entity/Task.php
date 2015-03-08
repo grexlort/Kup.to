@@ -178,4 +178,50 @@ class Task {
         return $this->createdAt;
     }
 
+
+    /**
+     * Set createdBy
+     *
+     * @param \Mmm\FrontendBundle\Entity\User $createdBy
+     * @return Task
+     */
+    public function setCreatedBy(\Mmm\FrontendBundle\Entity\User $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \Mmm\FrontendBundle\Entity\User 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set assignee
+     *
+     * @param \Mmm\FrontendBundle\Entity\User $assignee
+     * @return Task
+     */
+    public function setAssignee(\Mmm\FrontendBundle\Entity\User $assignee = null)
+    {
+        $this->assignee = $assignee;
+
+        return $this;
+    }
+
+    /**
+     * Get assignee
+     *
+     * @return \Mmm\FrontendBundle\Entity\User 
+     */
+    public function getAssignee()
+    {
+        return $this->assignee;
+    }
 }

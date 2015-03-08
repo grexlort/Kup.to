@@ -5,6 +5,7 @@ namespace Mmm\FrontendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Mmm\FrontendBundle\Entity\Task;
 use Mmm\FrontendBundle\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\UserRepository")
@@ -62,8 +63,15 @@ class User {
      */
     private $createdCategories;
 
-    public function __construct() {
-        $this->createdAt = new \DateTime();
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DataTime();
+        $this->createdTasks = new ArrayCollection();
+        $this->assignedTasks = new ArrayCollection();
+        $this->createdCategories = new ArrayCollection();
     }
 
     /**
@@ -159,4 +167,103 @@ class User {
         return $this->createdAt;
     }
 
+
+    /**
+     * Add createdTasks
+     *
+     * @param \Mmm\FrontendBundle\Entity\Task $createdTasks
+     * @return User
+     */
+    public function addCreatedTask(\Mmm\FrontendBundle\Entity\Task $createdTasks)
+    {
+        $this->createdTasks[] = $createdTasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove createdTasks
+     *
+     * @param \Mmm\FrontendBundle\Entity\Task $createdTasks
+     */
+    public function removeCreatedTask(\Mmm\FrontendBundle\Entity\Task $createdTasks)
+    {
+        $this->createdTasks->removeElement($createdTasks);
+    }
+
+    /**
+     * Get createdTasks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCreatedTasks()
+    {
+        return $this->createdTasks;
+    }
+
+    /**
+     * Add assignedTasks
+     *
+     * @param \Mmm\FrontendBundle\Entity\Task $assignedTasks
+     * @return User
+     */
+    public function addAssignedTask(\Mmm\FrontendBundle\Entity\Task $assignedTasks)
+    {
+        $this->assignedTasks[] = $assignedTasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove assignedTasks
+     *
+     * @param \Mmm\FrontendBundle\Entity\Task $assignedTasks
+     */
+    public function removeAssignedTask(\Mmm\FrontendBundle\Entity\Task $assignedTasks)
+    {
+        $this->assignedTasks->removeElement($assignedTasks);
+    }
+
+    /**
+     * Get assignedTasks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssignedTasks()
+    {
+        return $this->assignedTasks;
+    }
+
+    /**
+     * Add createdCategories
+     *
+     * @param \Mmm\FrontendBundle\Entity\Category $createdCategories
+     * @return User
+     */
+    public function addCreatedCategory(\Mmm\FrontendBundle\Entity\Category $createdCategories)
+    {
+        $this->createdCategories[] = $createdCategories;
+
+        return $this;
+    }
+
+    /**
+     * Remove createdCategories
+     *
+     * @param \Mmm\FrontendBundle\Entity\Category $createdCategories
+     */
+    public function removeCreatedCategory(\Mmm\FrontendBundle\Entity\Category $createdCategories)
+    {
+        $this->createdCategories->removeElement($createdCategories);
+    }
+
+    /**
+     * Get createdCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCreatedCategories()
+    {
+        return $this->createdCategories;
+    }
 }
