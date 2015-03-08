@@ -3,6 +3,8 @@
 namespace Mmm\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Mmm\FrontendBundle\Entity\Task;
+use Mmm\FrontendBundle\Entity\Category;
 
 /**
  * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\UserRepository")
@@ -45,18 +47,31 @@ class User {
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="createdBy", cascade={"persist"} , orphanRemoval=true)
+     */
+    private $createdTasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="assignee", cascade={"persist"} , orphanRemoval=true)
+     */
+    private $assignedTasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="user", cascade={"persist"} , orphanRemoval=true)
+     */
+    private $createdCategories;
+
     public function __construct() {
         $this->createdAt = new \DateTime();
     }
-
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -66,8 +81,7 @@ class User {
      * @param string $email
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -78,8 +92,7 @@ class User {
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -89,8 +102,7 @@ class User {
      * @param string $password
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -101,8 +113,7 @@ class User {
      *
      * @return string 
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -112,8 +123,7 @@ class User {
      * @param string $name
      * @return User
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -124,8 +134,7 @@ class User {
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -135,8 +144,7 @@ class User {
      * @param \DateTime $createdAt
      * @return User
      */
-    public function setCreatedAt($createdAt)
-    {
+    public function setCreatedAt($createdAt) {
         $this->createdAt = $createdAt;
 
         return $this;
@@ -147,8 +155,8 @@ class User {
      *
      * @return \DateTime 
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
     }
+
 }

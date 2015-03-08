@@ -48,6 +48,18 @@ class Task {
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="createdTasks")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id") 
+     */
+    private $createdBy;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks")
+     * @ORM\JoinColumn(name="assignee", referencedColumnName="id")
+     */
+    private $assignee;
+
     public function __construct() {
         $this->createdAt = new \DateTime();
     }
@@ -57,8 +69,7 @@ class Task {
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -68,8 +79,7 @@ class Task {
      * @param string $content
      * @return Task
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
 
         return $this;
@@ -80,8 +90,7 @@ class Task {
      *
      * @return string 
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -91,8 +100,7 @@ class Task {
      * @param \DateTime $dueDate
      * @return Task
      */
-    public function setDueDate($dueDate)
-    {
+    public function setDueDate($dueDate) {
         $this->dueDate = $dueDate;
 
         return $this;
@@ -103,8 +111,7 @@ class Task {
      *
      * @return \DateTime 
      */
-    public function getDueDate()
-    {
+    public function getDueDate() {
         return $this->dueDate;
     }
 
@@ -114,8 +121,7 @@ class Task {
      * @param boolean $done
      * @return Task
      */
-    public function setDone($done)
-    {
+    public function setDone($done) {
         $this->done = $done;
 
         return $this;
@@ -126,8 +132,7 @@ class Task {
      *
      * @return boolean 
      */
-    public function getDone()
-    {
+    public function getDone() {
         return $this->done;
     }
 
@@ -137,8 +142,7 @@ class Task {
      * @param string $priority
      * @return Task
      */
-    public function setPriority($priority)
-    {
+    public function setPriority($priority) {
         $this->priority = $priority;
 
         return $this;
@@ -149,8 +153,7 @@ class Task {
      *
      * @return string 
      */
-    public function getPriority()
-    {
+    public function getPriority() {
         return $this->priority;
     }
 
@@ -160,8 +163,7 @@ class Task {
      * @param \DateTime $createdAt
      * @return Task
      */
-    public function setCreatedAt($createdAt)
-    {
+    public function setCreatedAt($createdAt) {
         $this->createdAt = $createdAt;
 
         return $this;
@@ -172,8 +174,8 @@ class Task {
      *
      * @return \DateTime 
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
     }
+
 }
