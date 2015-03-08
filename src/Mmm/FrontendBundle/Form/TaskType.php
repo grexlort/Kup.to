@@ -20,7 +20,6 @@ class TaskType extends AbstractType
             ->add('done')
             ->add('priority')
             ->add('createdAt')
-            ->add('createdBy')
             ->add('assignee')
         ;
     }

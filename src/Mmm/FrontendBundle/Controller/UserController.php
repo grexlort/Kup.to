@@ -85,9 +85,7 @@ class UserController extends Controller
             $em->flush($user);
         }
 
-        return array(
-            'form' => $form->createView()
-        );
+        return $this->redirect('/');
     }
 
 

@@ -12,21 +12,23 @@ use Symfony\Component\HttpFoundation\Request;
  * Class UserController
  * @package Mmm\FrontendBundle\Controller
  * @Route("/task")
- * @Template()
  */
 class TaskController extends Controller
 {
 
     /**
-     * @Route("/", name="_aaa_task_list")
+     * @Route("/", name="_mmm_task_list")
      */
     public function indexAction()
     {
-        return $this->render("MmmFrontendBundle:Task:index.html.twig");
+        $repository = $this->getDoctrine()->getRepository('MmmFrontendBundle:Task');
+        return $this->render("MmmFrontendBundle:Task:index.html.twig", array(
+            'tasks' => $repository->findAll()
+        ));
     }
 
     /**
-     * @Route("/add", name="_aaa_task_add")
+     * @Route("/add", name="_mmm_task_add")
      */
     public function addAction(Request $request)
     {
@@ -41,10 +43,49 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush($task);
         }
-
-        return array(
+        return $this->render("MmmFrontendBundle:Task:add.html.twig", array(
             'form' => $form->createView()
-        );
+        ));
+    }
+
+    /**
+     * @Route("{id}", requirements={"id": "\d+"}, name="_mmm_task_edit")
+     */
+    public function editAction(Request $request, Task $task)
+    {
+        $form = $this->createForm(new TaskType(), $task);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($task);
+            $em->flush($task);
+        }
+
+        return $this->render("MmmFrontendBundle:Task:edit.html.twig", array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/{id}/delete", requirements={"id": "\d+"}, name="_mmm_task_delete")
+     */
+    public function deleteAction(Request $request, Task $task)
+    {
+        $form = $this->createForm(new TaskType(), $task);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($task);
+            $em->flush($task);
+        }
+
+        return $this->render("MmmFrontendBundle:Task:add.html.twig", array(
+            'form' => $form->createView()
+        ));
     }
 
 }
