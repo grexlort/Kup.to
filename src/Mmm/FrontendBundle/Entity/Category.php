@@ -20,23 +20,29 @@ class Category {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string" , nullable=true)
+     * @ORM\Column(name="name", type="string", nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string" , nullable=true)
+     * @ORM\Column(name="color", type="string", nullable=false)
      */
     private $color;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="created_at", type="datetime" , nullable=true)
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     */
+    private $createdBy;
 
     public function __construct() {
         $this->createdAt = new \DateTime();
@@ -104,7 +110,7 @@ class Category {
      * @param \DateTime $createdAt
      * @return Category
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -119,5 +125,28 @@ class Category {
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param \Mmm\FrontendBundle\Entity\User $createdBy
+     * @return Category
+     */
+    public function setCreatedBy(User $createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \Mmm\FrontendBundle\Entity\User 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
     }
 }

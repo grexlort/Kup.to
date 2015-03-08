@@ -3,8 +3,6 @@
 namespace Mmm\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Mmm\FrontendBundle\Entity\Task;
-use Mmm\FrontendBundle\Entity\Category;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -23,28 +21,28 @@ class User {
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string" , nullable=true)
+     * @ORM\Column(name="email", type="string", nullable=false)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string" , nullable=true)
+     * @ORM\Column(name="password", type="string", nullable=false)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string" , nullable=true)
+     * @ORM\Column(name="name", type="string", nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="created_at", type="datetime" , nullable=true)
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
 
@@ -59,7 +57,7 @@ class User {
     private $assignedTasks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="user", cascade={"persist"} , orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="createdBy", cascade={"persist"} , orphanRemoval=true)
      */
     private $createdCategories;
 
@@ -152,7 +150,7 @@ class User {
      * @param \DateTime $createdAt
      * @return User
      */
-    public function setCreatedAt($createdAt) {
+    public function setCreatedAt(\DateTime $createdAt) {
         $this->createdAt = $createdAt;
 
         return $this;
@@ -174,7 +172,7 @@ class User {
      * @param \Mmm\FrontendBundle\Entity\Task $createdTasks
      * @return User
      */
-    public function addCreatedTask(\Mmm\FrontendBundle\Entity\Task $createdTasks)
+    public function addCreatedTask(Task $createdTasks)
     {
         $this->createdTasks[] = $createdTasks;
 
@@ -186,7 +184,7 @@ class User {
      *
      * @param \Mmm\FrontendBundle\Entity\Task $createdTasks
      */
-    public function removeCreatedTask(\Mmm\FrontendBundle\Entity\Task $createdTasks)
+    public function removeCreatedTask(Task $createdTasks)
     {
         $this->createdTasks->removeElement($createdTasks);
     }
@@ -207,7 +205,7 @@ class User {
      * @param \Mmm\FrontendBundle\Entity\Task $assignedTasks
      * @return User
      */
-    public function addAssignedTask(\Mmm\FrontendBundle\Entity\Task $assignedTasks)
+    public function addAssignedTask(Task $assignedTasks)
     {
         $this->assignedTasks[] = $assignedTasks;
 
@@ -219,7 +217,7 @@ class User {
      *
      * @param \Mmm\FrontendBundle\Entity\Task $assignedTasks
      */
-    public function removeAssignedTask(\Mmm\FrontendBundle\Entity\Task $assignedTasks)
+    public function removeAssignedTask(Task $assignedTasks)
     {
         $this->assignedTasks->removeElement($assignedTasks);
     }
@@ -240,7 +238,7 @@ class User {
      * @param \Mmm\FrontendBundle\Entity\Category $createdCategories
      * @return User
      */
-    public function addCreatedCategory(\Mmm\FrontendBundle\Entity\Category $createdCategories)
+    public function addCreatedCategory(Category $createdCategories)
     {
         $this->createdCategories[] = $createdCategories;
 
@@ -252,7 +250,7 @@ class User {
      *
      * @param \Mmm\FrontendBundle\Entity\Category $createdCategories
      */
-    public function removeCreatedCategory(\Mmm\FrontendBundle\Entity\Category $createdCategories)
+    public function removeCreatedCategory(Category $createdCategories)
     {
         $this->createdCategories->removeElement($createdCategories);
     }

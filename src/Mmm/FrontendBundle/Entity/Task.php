@@ -43,20 +43,20 @@ class Task {
     private $priority;
 
     /**
-     * @var date
+     * @var \DateTime
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="createdTasks")
-     * @ORM\JoinColumn(name="created_by", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
      */
     private $createdBy;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks")
-     * @ORM\JoinColumn(name="assignee", referencedColumnName="id")
+     * @ORM\JoinColumn(name="assignee", referencedColumnName="id", nullable=false)
      */
     private $assignee;
 
@@ -100,7 +100,7 @@ class Task {
      * @param \DateTime $dueDate
      * @return Task
      */
-    public function setDueDate($dueDate) {
+    public function setDueDate(\DateTime $dueDate) {
         $this->dueDate = $dueDate;
 
         return $this;
@@ -163,7 +163,7 @@ class Task {
      * @param \DateTime $createdAt
      * @return Task
      */
-    public function setCreatedAt($createdAt) {
+    public function setCreatedAt(\DateTime $createdAt) {
         $this->createdAt = $createdAt;
 
         return $this;
@@ -185,7 +185,7 @@ class Task {
      * @param \Mmm\FrontendBundle\Entity\User $createdBy
      * @return Task
      */
-    public function setCreatedBy(\Mmm\FrontendBundle\Entity\User $createdBy = null)
+    public function setCreatedBy(User $createdBy = null)
     {
         $this->createdBy = $createdBy;
 
@@ -208,7 +208,7 @@ class Task {
      * @param \Mmm\FrontendBundle\Entity\User $assignee
      * @return Task
      */
-    public function setAssignee(\Mmm\FrontendBundle\Entity\User $assignee = null)
+    public function setAssignee(User $assignee = null)
     {
         $this->assignee = $assignee;
 
