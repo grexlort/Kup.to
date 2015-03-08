@@ -23,4 +23,22 @@ class Category {
      * @ORM\Column(name="name", type="string" , nullable=true)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string" , nullable=true)
+     */
+    private $color;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="created_at", type="datetime" , nullable=true)
+     */
+    private $createdAt;
+
+    public function __construct() {
+        $this->createdAt = new \DateTime();
+    }
 }
