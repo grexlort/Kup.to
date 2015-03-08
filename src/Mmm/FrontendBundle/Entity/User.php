@@ -9,8 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\UserRepository")
  * @ORM\Table(name="User")
  */
-class User {
-
+class User
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -66,7 +66,7 @@ class User {
      */
     public function __construct()
     {
-        $this->createdAt = new \DataTime();
+        $this->createdAt = new \DateTime();
         $this->createdTasks = new ArrayCollection();
         $this->assignedTasks = new ArrayCollection();
         $this->createdCategories = new ArrayCollection();
