@@ -1,0 +1,20 @@
+{
+  "name": "kupto",
+  "version": "0.0.0",
+  "homepage": "https://github.com/grexlort/Kup.to",
+  "authors": [
+    "Marcin <marcin@mbosweb.pl>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "require": {},
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
