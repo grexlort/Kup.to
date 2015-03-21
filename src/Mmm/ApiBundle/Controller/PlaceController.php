@@ -41,11 +41,12 @@ class PlaceController extends FOSRestController
      */
     public function getPlaceAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('MmmApiBundle:Place');
+        $places = $this->getDoctrine()
+            ->getRepository('MmmApiBundle:Place')
+            ->findAuthorCategories($this->getUser())
+        ;
 
-        $view = View::create([
-            $repository->findAll()
-        ]);
+        $view = View::create($places);
 
         return $this->handleView($view);
     }
