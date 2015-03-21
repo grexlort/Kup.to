@@ -3,6 +3,6 @@
 
 <ul>
     {% for user in users %}
-        <li>{{ user.name|e }} <a href="{{ path('_mmm_user_edit', {'id': user.id}) }}">Edit</a></li>
+        <li>{{ user.username|e }} <a href="{{ path('_mmm_user_edit', {'id': user.id}) }}">Edit</a></li>
     {% endfor %}
 </ul>
