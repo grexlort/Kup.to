@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\View\View;
 use Mmm\ApiBundle\Entity\Place;
 use Mmm\ApiBundle\Form\PlaceType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class PlaceController
@@ -38,9 +39,12 @@ class PlaceController extends FOSRestController
      */
     public function getPlaceAction(Request $request)
     {
+        $offset = (int) $request->get('offset', 0);
+        $limit = (int) $request->get('limit', 20);
+
         $places = $this->getDoctrine()
             ->getRepository('MmmApiBundle:Place')
-            ->findAuthorCategories($this->getUser())
+            ->findAuthorCategories($this->getUser(), $offset, $limit)
         ;
 
         $view = View::create($places);
@@ -49,6 +53,14 @@ class PlaceController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      description="Create place",
+     *      input="Mmm\ApiBundle\Form\PlaceType",
+     *      statusCodes={
+     *          200="Success",
+     *          400="Validation errors"
+     *      }
+     *  )
      */
     public function postPlaceAction(Request $request)
     {
@@ -64,11 +76,15 @@ class PlaceController extends FOSRestController
 
             $em->persist($place);
             $em->flush($place);
+
+            $view = View::create($place);
+
+            return $this->handleView($view);
         }
 
-        return array(
-            'form' => $form->createView()
-        );
+        $view = View::create($form, Response::HTTP_BAD_REQUEST);
+
+        return $this->handleView($view);
     }
 
     /**

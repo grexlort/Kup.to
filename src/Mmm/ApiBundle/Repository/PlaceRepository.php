@@ -13,10 +13,10 @@ use Mmm\ApiBundle\Entity\User;
  */
 class PlaceRepository extends EntityRepository
 {
-    public function findAuthorCategories(User $user)
+    public function findAuthorCategories(User $user, $offset = 0, $limit = 20)
     {
         return $this->findBy(array(
-            'createdBy' => $user
-        ));
+            'createdBy' => $user,
+        ), array(), $limit, $offset);
     }
 }

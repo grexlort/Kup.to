@@ -5,20 +5,15 @@ use Mmm\ApiBundle\Entity\Task;
 use Mmm\ApiBundle\Form\TaskType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class UserController
  * @package Mmm\ApiBundle\Controller
- * @Route("/task")
- * @Template()
  */
 class TaskController extends Controller
 {
     /**
-     * @Route("/", name="_mmm_task_list")
      */
     public function indexAction()
     {
@@ -30,7 +25,6 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/add", name="_mmm_task_add")
      */
     public function addAction(Request $request)
     {
@@ -54,7 +48,6 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/{id}", requirements={"id": "\d+"}, name="_mmm_task_edit")
      * @Security("user == task.getCreatedBy()")
      */
     public function editAction(Request $request, Task $task)
@@ -75,7 +68,6 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/{id}/delete", requirements={"id": "\d+"}, name="_mmm_task_delete")
      * @Security("user == task.getCreatedBy()")
      */
     public function deleteAction(Request $request, Task $task)
