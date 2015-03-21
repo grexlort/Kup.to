@@ -39,9 +39,9 @@ class TaskController extends Controller
         $form = $this->createForm(new TaskType(), $task);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $task->setCreatedBy($this->getUser());
+        $task->setCreatedBy($this->getUser());
 
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($task);

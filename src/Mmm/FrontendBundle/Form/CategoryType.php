@@ -18,6 +18,7 @@ class CategoryType extends AbstractType {
             ->add('color', 'choice', array(
                 'choices' => array('red' => 'red', 'blue' => 'blue')
             ))
+            ->add('save', 'submit')
         ;
     }
 

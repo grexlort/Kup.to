@@ -22,7 +22,6 @@ class Task {
      * @var string
      *
      * @ORM\Column(name="content", type="string" , nullable=true)
-     * @Assert\NotBlank()
      */
     private $content;
 
@@ -37,7 +36,6 @@ class Task {
     /**
      * @var boolean
      * @ORM\Column(name="done", type="boolean", nullable=false)
-     * @Assert\NotBlank()
      * @Assert\Choice(choices = {false, true})
      */
     private $done;
@@ -45,7 +43,6 @@ class Task {
     /**
      * @var string
      * @ORM\Column(name="priority", type="string", nullable=false)
-     * @Assert\NotBlank()
      * @Assert\Choice(choices = {false, true})
      */
     private $priority;
@@ -61,8 +58,6 @@ class Task {
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="createdTasks")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Date()
      */
     private $createdBy;
 

@@ -17,12 +17,19 @@ class TaskType extends AbstractType
         $builder
             ->add('content', 'text')
             ->add('dueDate', 'date')
-            ->add('done', 'checkbox')
-            ->add('priority', 'checkbox')
+            ->add('done', 'checkbox', array(
+                'required' => false,
+                'data' => false
+            ))
+            ->add('priority', 'checkbox', array(
+                'required' => false,
+                'data' => false
+            ))
             ->add('assignee', 'entity', array(
                 'class' => 'Mmm\FrontendBundle\Entity\User',
                 'property' => 'username'
             ))
+            ->add('save', 'submit')
         ;
     }
     
