@@ -3,6 +3,7 @@
 namespace Mmm\FrontendBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Mmm\FrontendBundle\Entity\User;
 
 /**
  * TaskRepository
@@ -12,4 +13,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class TaskRepository extends EntityRepository
 {
+    public function findAuthorTasks(User $user)
+    {
+        return $this->findBy(array(
+            'createdBy' => $user
+        ));
+    }
 }

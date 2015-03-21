@@ -19,7 +19,6 @@ class TaskType extends AbstractType
             ->add('dueDate', 'date')
             ->add('done', 'checkbox')
             ->add('priority', 'checkbox')
-            ->add('createdAt', 'date')
             ->add('assignee', 'entity', array(
                 'class' => 'Mmm\FrontendBundle\Entity\User',
                 'property' => 'username'

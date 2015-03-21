@@ -13,19 +13,20 @@ use Symfony\Component\HttpFoundation\Request;
  * Class UserController
  * @package Mmm\FrontendBundle\Controller
  * @Route("/task")
+ * @Template()
  */
 class TaskController extends Controller
 {
-
     /**
      * @Route("/", name="_mmm_task_list")
      */
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('MmmFrontendBundle:Task');
-        return $this->render("MmmFrontendBundle:Task:index.html.twig", array(
-            'tasks' => $repository->findAll()
-        ));
+
+        return array(
+            'tasks' => $repository->findAuthorTasks($this->getUser())
+        );
     }
 
     /**
@@ -39,14 +40,17 @@ class TaskController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $task->setCreatedBy($this->getUser());
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($task);
             $em->flush($task);
         }
-        return $this->render("MmmFrontendBundle:Task:add.html.twig", array(
+
+        return array(
             'form' => $form->createView()
-        ));
+        );
     }
 
     /**
@@ -59,17 +63,15 @@ class TaskController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $task->setCreatedBy($this->getUser());
-
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($task);
             $em->flush($task);
         }
 
-        return $this->render("MmmFrontendBundle:Task:edit.html.twig", array(
+        return array(
             'form' => $form->createView()
-        ));
+        );
     }
 
     /**
@@ -87,9 +89,9 @@ class TaskController extends Controller
             $em->flush($task);
         }
 
-        return $this->render("MmmFrontendBundle:Task:add.html.twig", array(
+        return array(
             'form' => $form->createView()
-        ));
+        );
     }
 
 }

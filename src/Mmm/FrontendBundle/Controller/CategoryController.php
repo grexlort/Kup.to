@@ -40,6 +40,8 @@ class CategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $category->setCreatedBy($this->getUser());
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($category);

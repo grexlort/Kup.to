@@ -14,12 +14,10 @@ class CategoryType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('name')
-                ->add('color', 'choice', array(
-                    'choices' => array('red' => 'red', 'blue' => 'blue')
-                ))
-                ->add('createdAt')
-                ->add('createdBy')
+            ->add('name')
+            ->add('color', 'choice', array(
+                'choices' => array('red' => 'red', 'blue' => 'blue')
+            ))
         ;
     }
 
