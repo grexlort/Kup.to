@@ -15,3 +15,4 @@
 /.idea/*
 /web/css/*
 /web/js/*
+/app/Resources/public/bower_components/*
