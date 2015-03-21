@@ -45,7 +45,7 @@ class Place {
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
      */
     private $createdBy;

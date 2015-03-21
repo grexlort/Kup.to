@@ -14,11 +14,13 @@ class PlaceType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('name')
+            ->add('name', null, array(
+                'description' => 'Place Name'
+            ))
             ->add('color', 'choice', array(
+                'description' => 'Place Color',
                 'choices' => array('red' => 'red', 'blue' => 'blue')
             ))
-            ->add('save', 'submit')
         ;
     }
 
@@ -35,7 +37,7 @@ class PlaceType extends AbstractType {
      * @return string
      */
     public function getName() {
-        return 'mmm_apibundle_place';
+        return '';
     }
 
 }

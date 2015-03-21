@@ -56,13 +56,13 @@ class Task {
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="createdTasks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="createdTasks", cascade={"persist"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
      */
     private $createdBy;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks", cascade={"persist"})
      * @ORM\JoinColumn(name="assignee", referencedColumnName="id", nullable=false)
      */
     private $assignee;
