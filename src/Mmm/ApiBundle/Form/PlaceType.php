@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryType extends AbstractType {
+class PlaceType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
@@ -27,7 +27,7 @@ class CategoryType extends AbstractType {
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Mmm\ApiBundle\Entity\Category'
+            'data_class' => 'Mmm\ApiBundle\Entity\Place'
         ));
     }
 
@@ -35,7 +35,7 @@ class CategoryType extends AbstractType {
      * @return string
      */
     public function getName() {
-        return 'mmm_ApiBundle_category';
+        return 'mmm_apibundle_place';
     }
 
 }

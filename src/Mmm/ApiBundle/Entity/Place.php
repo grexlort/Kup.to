@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Mmm\ApiBundle\Repository\CategoryRepository")
- * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="Mmm\ApiBundle\Repository\PlaceRepository")
+ * @ORM\Table(name="place")
  */
-class Category {
+class Place {
 
     /**
      * @ORM\Id
@@ -68,7 +68,7 @@ class Category {
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return Place
      */
     public function setName($name)
     {
@@ -91,7 +91,7 @@ class Category {
      * Set color
      *
      * @param string $color
-     * @return Category
+     * @return Place
      */
     public function setColor($color)
     {
@@ -114,7 +114,7 @@ class Category {
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Category
+     * @return Place
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
@@ -137,7 +137,7 @@ class Category {
      * Set createdBy
      *
      * @param \Mmm\ApiBundle\Entity\User $createdBy
-     * @return Category
+     * @return Place
      */
     public function setCreatedBy(User $createdBy)
     {

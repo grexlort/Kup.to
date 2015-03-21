@@ -7,18 +7,18 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\View\View;
-use Mmm\ApiBundle\Entity\Category;
-use Mmm\ApiBundle\Form\CategoryType;
+use Mmm\ApiBundle\Entity\Place;
+use Mmm\ApiBundle\Form\PlaceType;
 
 /**
- * Class CategoryController
+ * Class PlaceController
  * @package Mmm\ApiBundle\Controller
  */
-class CategoryController extends FOSRestController
+class PlaceController extends FOSRestController
 {
     /**
      * @ApiDoc(
-     *      description="Get category for logged user",
+     *      description="Get places for logged user",
      *      parameters={
      *          {
      *              "name"="offset",
@@ -39,9 +39,9 @@ class CategoryController extends FOSRestController
      *      }
      *  )
      */
-    public function getCategoryAction(Request $request)
+    public function getPlaceAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('MmmApiBundle:Category');
+        $repository = $this->getDoctrine()->getRepository('MmmApiBundle:Place');
 
         $view = View::create([
             $repository->findAll()
@@ -52,20 +52,20 @@ class CategoryController extends FOSRestController
 
     /**
      */
-    public function postCategoryAction(Request $request)
+    public function postPlaceAction(Request $request)
     {
-        $category = new Category();
+        $place = new Place();
 
-        $form = $this->createForm(new CategoryType(), $category);
+        $form = $this->createForm(new PlaceType(), $place);
         $form->handleRequest($request);
 
-        $category->setCreatedBy($this->getUser());
+        $place->setCreatedBy($this->getUser());
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($category);
-            $em->flush($category);
+            $em->persist($place);
+            $em->flush($place);
         }
 
         return array(
@@ -74,18 +74,18 @@ class CategoryController extends FOSRestController
     }
 
     /**
-     * @Security("user == category.getCreatedBy()")
+     * @Security("user == place.getCreatedBy()")
      */
-    public function putCategoryAction(Request $request, Category $category)
+    public function putPlaceAction(Request $request, Place $place)
     {
-        $form = $this->createForm(new CategoryType(), $category);
+        $form = $this->createForm(new PlaceType(), $place);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($category);
-            $em->flush($category);
+            $em->persist($place);
+            $em->flush($place);
         }
 
         return array(
@@ -94,18 +94,18 @@ class CategoryController extends FOSRestController
     }
 
     /**
-     * @Security("user == category.getCreatedBy()")
+     * @Security("user == place.getCreatedBy()")
      */
-    public function deleteCategoryAction(Request $request, Category $category)
+    public function deletePlaceAction(Request $request, Place $place)
     {
-        $form = $this->createForm(new CategoryType(), $category);
+        $form = $this->createForm(new PlaceType(), $place);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($category);
-            $em->flush($category);
+            $em->persist($place);
+            $em->flush($place);
         }
 
         return array(

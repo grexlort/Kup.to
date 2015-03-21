@@ -48,6 +48,6 @@ class TaskType extends AbstractType
      */
     public function getName()
     {
-        return 'mmm_ApiBundle_task';
+        return 'mmm_apibudle_task';
     }
 }

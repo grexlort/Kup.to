@@ -40,9 +40,9 @@ class User extends BaseUser
     private $assignedTasks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="createdBy", cascade={"persist"} , orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Place", mappedBy="createdBy", cascade={"persist"} , orphanRemoval=true)
      */
-    private $createdCategories;
+    private $createdPlaces;
 
     /**
      * Constructor
@@ -54,7 +54,7 @@ class User extends BaseUser
         $this->createdAt = new \DateTime();
         $this->createdTasks = new ArrayCollection();
         $this->assignedTasks = new ArrayCollection();
-        $this->createdCategories = new ArrayCollection();
+        $this->createdPlaces = new ArrayCollection();
     }
 
     /**
@@ -91,7 +91,7 @@ class User extends BaseUser
     /**
      * Add createdTasks
      *
-     * @param \Mmm\ApiBundle\Entity\Task $createdTasks
+     * @param Task $createdTasks
      * @return User
      */
     public function addCreatedTask(Task $createdTasks)
@@ -104,7 +104,7 @@ class User extends BaseUser
     /**
      * Remove createdTasks
      *
-     * @param \Mmm\ApiBundle\Entity\Task $createdTasks
+     * @param Task $createdTasks
      */
     public function removeCreatedTask(Task $createdTasks)
     {
@@ -124,7 +124,7 @@ class User extends BaseUser
     /**
      * Add assignedTasks
      *
-     * @param \Mmm\ApiBundle\Entity\Task $assignedTasks
+     * @param Task $assignedTasks
      * @return User
      */
     public function addAssignedTask(Task $assignedTasks)
@@ -137,7 +137,7 @@ class User extends BaseUser
     /**
      * Remove assignedTasks
      *
-     * @param \Mmm\ApiBundle\Entity\Task $assignedTasks
+     * @param Task $assignedTasks
      */
     public function removeAssignedTask(Task $assignedTasks)
     {
@@ -155,35 +155,35 @@ class User extends BaseUser
     }
 
     /**
-     * Add createdCategories
+     * Add createdPlaces
      *
-     * @param \Mmm\ApiBundle\Entity\Category $createdCategories
+     * @param Place $createdPlaces
      * @return User
      */
-    public function addCreatedCategory(Category $createdCategories)
+    public function addCreatedPlace(Place $createdPlaces)
     {
-        $this->createdCategories[] = $createdCategories;
+        $this->createdPlaces[] = $createdPlaces;
 
         return $this;
     }
 
     /**
-     * Remove createdCategories
+     * Remove createdPlaces
      *
-     * @param \Mmm\ApiBundle\Entity\Category $createdCategories
+     * @param Place $createdPlaces
      */
-    public function removeCreatedCategory(Category $createdCategories)
+    public function removeCreatedPlace(Place $createdPlaces)
     {
-        $this->createdCategories->removeElement($createdCategories);
+        $this->createdPlaces->removeElement($createdPlaces);
     }
 
     /**
-     * Get createdCategories
+     * Get createdPlaces
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCreatedCategories()
+    public function getCreatedPlaces()
     {
-        return $this->createdCategories;
+        return $this->createdPlaces;
     }
 }
