@@ -76,6 +76,7 @@ class TaskController extends Controller
 
     /**
      * @Route("/{id}/delete", requirements={"id": "\d+"}, name="_mmm_task_delete")
+     * @Security("user == task.getCreatedBy()")
      */
     public function deleteAction(Request $request, Task $task)
     {

@@ -5,6 +5,7 @@ namespace Mmm\FrontendBundle\Controller;
 use Mmm\FrontendBundle\Entity\Category;
 use Mmm\FrontendBundle\Form\CategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,9 +40,9 @@ class CategoryController extends Controller
         $form = $this->createForm(new CategoryType(), $category);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $category->setCreatedBy($this->getUser());
+        $category->setCreatedBy($this->getUser());
 
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($category);
@@ -55,6 +56,7 @@ class CategoryController extends Controller
 
     /**
      * @Route("/{id}", requirements={"id": "\d+"}, name="_mmm_category_edit")
+     * @Security("user == category.getCreatedBy()")
      */
     public function editAction(Request $request, Category $category)
     {
@@ -75,6 +77,7 @@ class CategoryController extends Controller
 
     /**
      * @Route("/{id}/delete", requirements={"id": "\d+"}, name="_mmm_category_delete")
+     * @Security("user == category.getCreatedBy()")
      */
     public function deleteAction(Request $request, Category $category)
     {
