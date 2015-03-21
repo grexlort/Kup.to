@@ -2,22 +2,22 @@
 
 namespace Mmm\ApiBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Request\ParamFetcher;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
+use FOS\RestBundle\Request\ParamFetcher;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Mmm\ApiBundle\Entity\Place;
 use Mmm\ApiBundle\Form\PlaceType;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 /**
  * Class PlaceController
  * @package Mmm\ApiBundle\Controller
  */
-class PlaceController extends FOSRestController
+class PlaceController extends Controller
 {
     /**
      * Get places for logged user
@@ -65,7 +65,7 @@ class PlaceController extends FOSRestController
     /**
      * Update place
      *
-     * @Security("user == place.getCreatedBy()")
+     * @Security("place.isAuthor(user)")
      *
      * @ApiDoc(
      *      description="Update place",
@@ -84,7 +84,7 @@ class PlaceController extends FOSRestController
     /**
      * Delete place
      *
-     * @Security("user == place.getCreatedBy()")
+     * @Security("place.isAuthor(user)")
      *
      * @ApiDoc(
      *      description="Delete place",
@@ -105,18 +105,19 @@ class PlaceController extends FOSRestController
 
     protected function processPlaceForm(Request $request, Place $place = null, $method = 'POST')
     {
-        $form = $this->createForm($place, $place, array(
+        $form = $this->createForm(new PlaceType(), $place, array(
             'method' => $method
         ));
 
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            $place = $place ?: $form->getData();
             $em->persist($place);
             $em->flush($place);
 
             $status = null === $place ? Response::HTTP_CREATED : Response::HTTP_OK;
-            return View::create($form, $status);
+            return View::create($place, $status);
         }
 
         return View::create($form, Response::HTTP_BAD_REQUEST);

@@ -4,13 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+    <parameters>
+        <parameter key="mmm_api.author_listener.class">Mmm\ApiBundle\Listener\AuthorListener</parameter>
+    </parameters>
+
     <services>
-        <service id="mmm_api.example" class="Mmm\ApiBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="mmm_api.author_listener" class="%mmm_api.author_listener.class%">
+            <argument type="service" id="security.token_storage" />
+            <tag name="doctrine.event_listener" event="prePersist" />
         </service>
     </services>
-    -->
+
 </container>

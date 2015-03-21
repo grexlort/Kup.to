@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Mmm\ApiBundle\Repository\TaskRepository")
  * @ORM\Table(name="task")
  */
-class Task {
+class Task implements AuthorInterface
+{
 
     /**
      * @ORM\Id
@@ -187,12 +188,9 @@ class Task {
 
 
     /**
-     * Set createdBy
-     *
-     * @param \Mmm\ApiBundle\Entity\User $createdBy
-     * @return Task
+     * {@inheritdoc}
      */
-    public function setCreatedBy(User $createdBy = null)
+    public function setCreatedBy(User $createdBy)
     {
         $this->createdBy = $createdBy;
 
@@ -230,5 +228,17 @@ class Task {
     public function getAssignee()
     {
         return $this->assignee;
+    }
+
+    /**
+     * Is the given User the author of this Task
+     *
+     * @param \Mmm\ApiBundle\Entity\User $user
+     *
+     * @return bool
+     */
+    public function isAuthor(User $user = null)
+    {
+        return $user && $user->getId() == $this->getId();
     }
 }

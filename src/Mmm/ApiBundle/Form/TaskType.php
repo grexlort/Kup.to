@@ -39,7 +39,8 @@ class TaskType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Mmm\ApiBundle\Entity\Task'
+            'data_class' => 'Mmm\ApiBundle\Entity\Task',
+            'csrf_protection' => false
         ));
     }
 

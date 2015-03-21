@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Mmm\ApiBundle\Repository\PlaceRepository")
  * @ORM\Table(name="place")
  */
-class Place {
+class Place implements AuthorInterface
+{
 
     /**
      * @ORM\Id
@@ -134,10 +135,7 @@ class Place {
     }
 
     /**
-     * Set createdBy
-     *
-     * @param \Mmm\ApiBundle\Entity\User $createdBy
-     * @return Place
+     * {@inheritdoc}
      */
     public function setCreatedBy(User $createdBy)
     {
@@ -154,5 +152,17 @@ class Place {
     public function getCreatedBy()
     {
         return $this->createdBy;
+    }
+
+    /**
+     * Is the given User the author of this Place
+     *
+     * @param \Mmm\ApiBundle\Entity\User $user
+     *
+     * @return bool
+     */
+    public function isAuthor(User $user = null)
+    {
+        return $user && $user == $this->getCreatedAt();
     }
 }

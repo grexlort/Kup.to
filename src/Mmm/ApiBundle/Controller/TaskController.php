@@ -33,8 +33,6 @@ class TaskController extends Controller
         $form = $this->createForm(new TaskType(), $task);
         $form->handleRequest($request);
 
-        $task->setCreatedBy($this->getUser());
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -48,7 +46,7 @@ class TaskController extends Controller
     }
 
     /**
-     * @Security("user == task.getCreatedBy()")
+     * @Security("task.isAuthor(user)")
      */
     public function editAction(Request $request, Task $task)
     {
@@ -68,7 +66,7 @@ class TaskController extends Controller
     }
 
     /**
-     * @Security("user == task.getCreatedBy()")
+     * @Security("task.isAuthor(user)")
      */
     public function deleteAction(Request $request, Task $task)
     {
