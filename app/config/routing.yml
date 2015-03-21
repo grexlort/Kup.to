@@ -1,7 +1,7 @@
-mmm_api_place:
-    type:     rest
-    resource: Mmm\ApiBundle\Controller\PlaceController
-    prefix:   /api
+#mmm_api_place:
+#    type:     rest
+#    resource: Mmm\ApiBundle\Controller\PlaceController
+#    prefix:   /api
 
 mmm_frontend:
     resource: "@MmmFrontendBundle/Controller/"
