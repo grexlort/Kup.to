@@ -4,13 +4,14 @@ namespace Mmm\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Entity\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\UserRepository")
- * @ORM\Table(name="User")
+ * @ORM\Table(name="user")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -18,32 +19,6 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Email()
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", nullable=false)
-     * @Assert\NotBlank()
-     *
-     */
-    private $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", nullable=false)
-     * @Assert\NotBlank()
-     */
-    private $name;
 
     /**
      * @var string
@@ -74,6 +49,8 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->createdAt = new \DateTime();
         $this->createdTasks = new ArrayCollection();
         $this->assignedTasks = new ArrayCollection();
@@ -87,69 +64,6 @@ class User
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email) {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail() {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password) {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword() {
-        return $this->password;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name) {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName() {
-        return $this->name;
     }
 
     /**

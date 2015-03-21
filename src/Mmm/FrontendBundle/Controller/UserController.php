@@ -1,6 +1,7 @@
 <?php
 
 namespace Mmm\FrontendBundle\Controller;
+
 use Mmm\FrontendBundle\Entity\User;
 use Mmm\FrontendBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
