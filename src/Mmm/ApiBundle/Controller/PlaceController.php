@@ -32,10 +32,7 @@ class PlaceController extends FOSRestController
      *          }
      *      },
      *      statusCodes={
-     *          200="Success",
-     *          400={
-     *              "Validation errors"
-     *          }
+     *          200="Success"
      *      }
      *  )
      */
