@@ -10,3 +10,5 @@ security:
 
         default:
             anonymous: ~
+    access_control:
+        - { path: ^/task, roles: ROLE_USER }

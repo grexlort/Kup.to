@@ -6,6 +6,7 @@ use Mmm\FrontendBundle\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -50,6 +51,7 @@ class TaskController extends Controller
 
     /**
      * @Route("{id}", requirements={"id": "\d+"}, name="_mmm_task_edit")
+     * @Security("app.user == task.user")
      */
     public function editAction(Request $request, Task $task)
     {
