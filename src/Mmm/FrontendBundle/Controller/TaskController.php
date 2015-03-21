@@ -54,8 +54,8 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("{id}", requirements={"id": "\d+"}, name="_mmm_task_edit")
-     * @Security("app.user == task.user")
+     * @Route("/{id}", requirements={"id": "\d+"}, name="_mmm_task_edit")
+     * @Security("user == task.getCreatedBy()")
      */
     public function editAction(Request $request, Task $task)
     {
