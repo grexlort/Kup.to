@@ -75,4 +75,10 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Mmm\FrontendBundle\Entity\User
+    user_class: Mmm\ApiBundle\Entity\User
+
+fos_rest:
+    routing_loader:
+        default_format: json
+
+nelmio_api_doc: ~

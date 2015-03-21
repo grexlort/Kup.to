@@ -1,12 +1,12 @@
 <?php
 
-namespace Mmm\FrontendBundle\Entity;
+namespace Mmm\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\TaskRepository")
+ * @ORM\Entity(repositoryClass="Mmm\ApiBundle\Repository\TaskRepository")
  * @ORM\Table(name="task")
  */
 class Task {
@@ -189,7 +189,7 @@ class Task {
     /**
      * Set createdBy
      *
-     * @param \Mmm\FrontendBundle\Entity\User $createdBy
+     * @param \Mmm\ApiBundle\Entity\User $createdBy
      * @return Task
      */
     public function setCreatedBy(User $createdBy = null)
@@ -202,7 +202,7 @@ class Task {
     /**
      * Get createdBy
      *
-     * @return \Mmm\FrontendBundle\Entity\User 
+     * @return \Mmm\ApiBundle\Entity\User
      */
     public function getCreatedBy()
     {
@@ -212,7 +212,7 @@ class Task {
     /**
      * Set assignee
      *
-     * @param \Mmm\FrontendBundle\Entity\User $assignee
+     * @param \Mmm\ApiBundle\Entity\User $assignee
      * @return Task
      */
     public function setAssignee(User $assignee = null)
@@ -225,7 +225,7 @@ class Task {
     /**
      * Get assignee
      *
-     * @return \Mmm\FrontendBundle\Entity\User 
+     * @return \Mmm\ApiBundle\Entity\User
      */
     public function getAssignee()
     {

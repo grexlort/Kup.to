@@ -1,6 +1,6 @@
 <?php
 
-namespace Mmm\FrontendBundle\Form;
+namespace Mmm\ApiBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +26,7 @@ class TaskType extends AbstractType
                 'data' => false
             ))
             ->add('assignee', 'entity', array(
-                'class' => 'Mmm\FrontendBundle\Entity\User',
+                'class' => 'Mmm\ApiBundle\Entity\User',
                 'property' => 'username'
             ))
             ->add('save', 'submit')
@@ -39,7 +39,7 @@ class TaskType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Mmm\FrontendBundle\Entity\Task'
+            'data_class' => 'Mmm\ApiBundle\Entity\Task'
         ));
     }
 
@@ -48,6 +48,6 @@ class TaskType extends AbstractType
      */
     public function getName()
     {
-        return 'mmm_frontendbundle_task';
+        return 'mmm_ApiBundle_task';
     }
 }

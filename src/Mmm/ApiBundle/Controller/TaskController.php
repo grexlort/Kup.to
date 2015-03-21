@@ -1,8 +1,8 @@
 <?php
 
-namespace Mmm\FrontendBundle\Controller;
-use Mmm\FrontendBundle\Entity\Task;
-use Mmm\FrontendBundle\Form\TaskType;
+namespace Mmm\ApiBundle\Controller;
+use Mmm\ApiBundle\Entity\Task;
+use Mmm\ApiBundle\Form\TaskType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class UserController
- * @package Mmm\FrontendBundle\Controller
+ * @package Mmm\ApiBundle\Controller
  * @Route("/task")
  * @Template()
  */
@@ -22,7 +22,7 @@ class TaskController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->getDoctrine()->getRepository('MmmFrontendBundle:Task');
+        $repository = $this->getDoctrine()->getRepository('MmmApiBundle:Task');
 
         return array(
             'tasks' => $repository->findAuthorTasks($this->getUser())

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mmm\FrontendBundle\Form;
+namespace Mmm\ApiBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,7 @@ class CategoryType extends AbstractType {
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Mmm\FrontendBundle\Entity\Category'
+            'data_class' => 'Mmm\ApiBundle\Entity\Category'
         ));
     }
 
@@ -35,7 +35,7 @@ class CategoryType extends AbstractType {
      * @return string
      */
     public function getName() {
-        return 'mmm_frontendbundle_category';
+        return 'mmm_ApiBundle_category';
     }
 
 }

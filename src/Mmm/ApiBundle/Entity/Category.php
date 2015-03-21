@@ -1,12 +1,12 @@
 <?php
 
-namespace Mmm\FrontendBundle\Entity;
+namespace Mmm\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="Mmm\ApiBundle\Repository\CategoryRepository")
  * @ORM\Table(name="category")
  */
 class Category {
@@ -136,7 +136,7 @@ class Category {
     /**
      * Set createdBy
      *
-     * @param \Mmm\FrontendBundle\Entity\User $createdBy
+     * @param \Mmm\ApiBundle\Entity\User $createdBy
      * @return Category
      */
     public function setCreatedBy(User $createdBy)
@@ -149,7 +149,7 @@ class Category {
     /**
      * Get createdBy
      *
-     * @return \Mmm\FrontendBundle\Entity\User 
+     * @return \Mmm\ApiBundle\Entity\User
      */
     public function getCreatedBy()
     {

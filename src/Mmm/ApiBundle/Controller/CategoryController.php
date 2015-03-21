@@ -1,39 +1,58 @@
 <?php
 
-namespace Mmm\FrontendBundle\Controller;
+namespace Mmm\ApiBundle\Controller;
 
-use Mmm\FrontendBundle\Entity\Category;
-use Mmm\FrontendBundle\Form\CategoryType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\View\View;
+use Mmm\ApiBundle\Entity\Category;
+use Mmm\ApiBundle\Form\CategoryType;
 
 /**
  * Class CategoryController
- * @package Mmm\FrontendBundle\Controller
- * @Route("/category")
- * @Template()
+ * @package Mmm\ApiBundle\Controller
  */
-class CategoryController extends Controller
+class CategoryController extends FOSRestController
 {
     /**
-     * @Route("/", name="_mmm_category_list")
+     * @ApiDoc(
+     *      description="Get category for logged user",
+     *      parameters={
+     *          {
+     *              "name"="offset",
+     *              "dataType"="integer",
+     *              "required"=false
+     *          },
+     *          {
+     *              "name"="limit",
+     *              "dataType"="integer",
+     *              "required"=false
+     *          }
+     *      },
+     *      statusCodes={
+     *          200="Success",
+     *          400={
+     *              "Validation errors"
+     *          }
+     *      }
+     *  )
      */
-    public function indexAction()
+    public function getCategoryAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('MmmFrontendBundle:Category');
-        
-        return array(
-            'categories' => $repository->findAll()
-        );
+        $repository = $this->getDoctrine()->getRepository('MmmApiBundle:Category');
+
+        $view = View::create([
+            $repository->findAll()
+        ]);
+
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/add", name="_mmm_category_add")
      */
-    public function addAction(Request $request)
+    public function postCategoryAction(Request $request)
     {
         $category = new Category();
 
@@ -55,10 +74,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/{id}", requirements={"id": "\d+"}, name="_mmm_category_edit")
      * @Security("user == category.getCreatedBy()")
      */
-    public function editAction(Request $request, Category $category)
+    public function putCategoryAction(Request $request, Category $category)
     {
         $form = $this->createForm(new CategoryType(), $category);
         $form->handleRequest($request);
@@ -76,10 +94,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/{id}/delete", requirements={"id": "\d+"}, name="_mmm_category_delete")
      * @Security("user == category.getCreatedBy()")
      */
-    public function deleteAction(Request $request, Category $category)
+    public function deleteCategoryAction(Request $request, Category $category)
     {
         $form = $this->createForm(new CategoryType(), $category);
         $form->handleRequest($request);

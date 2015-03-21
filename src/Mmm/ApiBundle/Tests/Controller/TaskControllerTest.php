@@ -1,6 +1,6 @@
 <?php
 
-namespace Mmm\FrontendBundle\Tests\Controller;
+namespace Mmm\ApiBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

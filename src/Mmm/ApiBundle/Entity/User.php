@@ -1,6 +1,6 @@
 <?php
 
-namespace Mmm\FrontendBundle\Entity;
+namespace Mmm\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,7 +8,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Mmm\FrontendBundle\Repository\UserRepository")
+ * @ORM\Entity()
  * @ORM\Table(name="user")
  */
 class User extends BaseUser
@@ -91,7 +91,7 @@ class User extends BaseUser
     /**
      * Add createdTasks
      *
-     * @param \Mmm\FrontendBundle\Entity\Task $createdTasks
+     * @param \Mmm\ApiBundle\Entity\Task $createdTasks
      * @return User
      */
     public function addCreatedTask(Task $createdTasks)
@@ -104,7 +104,7 @@ class User extends BaseUser
     /**
      * Remove createdTasks
      *
-     * @param \Mmm\FrontendBundle\Entity\Task $createdTasks
+     * @param \Mmm\ApiBundle\Entity\Task $createdTasks
      */
     public function removeCreatedTask(Task $createdTasks)
     {
@@ -124,7 +124,7 @@ class User extends BaseUser
     /**
      * Add assignedTasks
      *
-     * @param \Mmm\FrontendBundle\Entity\Task $assignedTasks
+     * @param \Mmm\ApiBundle\Entity\Task $assignedTasks
      * @return User
      */
     public function addAssignedTask(Task $assignedTasks)
@@ -137,7 +137,7 @@ class User extends BaseUser
     /**
      * Remove assignedTasks
      *
-     * @param \Mmm\FrontendBundle\Entity\Task $assignedTasks
+     * @param \Mmm\ApiBundle\Entity\Task $assignedTasks
      */
     public function removeAssignedTask(Task $assignedTasks)
     {
@@ -157,7 +157,7 @@ class User extends BaseUser
     /**
      * Add createdCategories
      *
-     * @param \Mmm\FrontendBundle\Entity\Category $createdCategories
+     * @param \Mmm\ApiBundle\Entity\Category $createdCategories
      * @return User
      */
     public function addCreatedCategory(Category $createdCategories)
@@ -170,7 +170,7 @@ class User extends BaseUser
     /**
      * Remove createdCategories
      *
-     * @param \Mmm\FrontendBundle\Entity\Category $createdCategories
+     * @param \Mmm\ApiBundle\Entity\Category $createdCategories
      */
     public function removeCreatedCategory(Category $createdCategories)
     {
