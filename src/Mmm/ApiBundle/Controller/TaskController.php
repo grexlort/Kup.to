@@ -84,9 +84,9 @@ class TaskController extends Controller
      *      }
      *  )
      */
-    public function patchTasksAction(Request $request, Place $place, Task $task)
+    public function putTasksAction(Request $request, Place $place, Task $task)
     {
-        return $this->processTaskForm($request, $place, $task);
+        return $this->processTaskForm($request, $place, $task, 'PUT');
     }
 
     /**
@@ -95,17 +95,39 @@ class TaskController extends Controller
      * @Security("task.isAuthor(user)")
      *
      * @ApiDoc(
-     *      description="Update place",
+     *      description="Delete task",
+     *      statusCodes={
+     *          205="Success"
+     *      }
+     *  )
+     */
+    public function deleteTasksAction(Place $place, Task $task)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($task);
+        $em->flush($task);
+
+        return View::create(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * Assignee user to task
+     *
+     * @Security("task.isAuthor(user)")
+     *
+     * @ApiDoc(
+     *      description="Create place",
      *      input="Mmm\ApiBundle\Form\PlaceType",
      *      statusCodes={
-     *          200="Success",
+     *          201="Success",
      *          400="Validation errors"
      *      }
      *  )
      */
-    public function deleteTasksAction(Request $request, Place $place, Task $task)
+    public function linkTasksAction(Request $request, Place $place, Task $task)
     {
-        return $this->processTaskForm($request, $place, 'PATCH');
+        return $this->processTaskForm($request, $place, $task, 'PUT');
     }
 
     protected function processTaskForm(Request $request, Place $place, Task $task = null, $method = 'POST')

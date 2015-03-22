@@ -77,9 +77,9 @@ class PlaceController extends Controller implements ClassResourceInterface
      *      }
      *  )
      */
-    public function patchAction(Request $request, Place $place)
+    public function putAction(Request $request, Place $place)
     {
-        return $this->processPlaceForm($request, $place, 'PATCH');
+        return $this->processPlaceForm($request, $place, 'PUT');
     }
 
     /**

@@ -8,6 +8,11 @@ mmm_api_task:
     resource: Mmm\ApiBundle\Controller\TaskController
     prefix:   /api
 
+mmm_api_user:
+    type:     rest
+    resource: Mmm\ApiBundle\Controller\UserController
+    prefix:   /api
+
 mmm_frontend:
     resource: "@MmmFrontendBundle/Controller/"
     type:     annotation
