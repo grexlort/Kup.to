@@ -267,6 +267,6 @@ class Task implements AuthorInterface
      */
     public function isAuthor(User $user = null)
     {
-        return $user && $user->getId() == $this->getId();
+        return $user && $user == $this->getCreatedBy();
     }
 }

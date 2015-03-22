@@ -201,6 +201,6 @@ class Place implements AuthorInterface
      */
     public function isAuthor(User $user = null)
     {
-        return $user && $user == $this->getCreatedAt();
+        return $user && $user == $this->getCreatedBy();
     }
 }

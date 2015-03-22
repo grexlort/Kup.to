@@ -14,11 +14,11 @@ use Mmm\ApiBundle\Entity\User;
  */
 class TaskRepository extends EntityRepository
 {
-    public function findAuthorTasksByPlace(Place $place, User $user)
+    public function findAuthorTasksByPlace(Place $place, User $user, $offset = 0, $limit = 20)
     {
         return $this->findBy(array(
             'place' => $place,
             'createdBy' => $user
-        ));
+        ), $offset, $limit);
     }
 }
