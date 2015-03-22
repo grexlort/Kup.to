@@ -4,10 +4,17 @@
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2">
             {#place list#}
-            <div ng-controller="PlaceCtrl" class="place">
-                <div class="panel panel-success item">
+            <div class="place">
+                {#add div#}
+                <div ng-show="addNew.status == true">
+                    <input type="text" ng-model="addNew.name">
+                    <input type="text" ng-model="addNew.color">
+                    <button ng-click="addNew.add()" >Save</button>
+                </div>
+
+                <div ng-repeat="place in places" class="panel panel-success item">
                     <div class="panel-body">
-                        <div class="col-sm-7">NAME</div>
+                        <div class="col-sm-7" ng-class="{colorRed: 'red' == place.color }">[[ place.name ]]</div>
                         <div class="col-sm-1"><a href="#" class="btn btn-link">zdj1</a></div>
                         <div class="col-sm-1"><a href="#" class="btn btn-link">zdj2</a></div>
                         <div class="col-sm-3"><a href="#" class="btn btn-default">Go</a></div>
