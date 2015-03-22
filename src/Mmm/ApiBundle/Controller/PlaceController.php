@@ -110,13 +110,14 @@ class PlaceController extends Controller
         ));
 
         if ($form->handleRequest($request)->isValid()) {
+            $status = null === $place ? Response::HTTP_CREATED : Response::HTTP_OK;
+
             $em = $this->getDoctrine()->getManager();
 
             $place = $place ?: $form->getData();
             $em->persist($place);
             $em->flush($place);
 
-            $status = null === $place ? Response::HTTP_CREATED : Response::HTTP_OK;
             return View::create($place, $status);
         }
 
