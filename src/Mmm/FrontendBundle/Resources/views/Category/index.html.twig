@@ -1,8 +1,0 @@
-<a href="{{ path('_mmm_category_add') }}">Add</a>
-
-
-<ul>
-    {% for category in categories %}
-        <li>{{ category.name }} <a href="{{ path('_mmm_category_edit', {'id': category.id}) }}">Edit</a></li>
-    {% endfor %}
-</ul>
