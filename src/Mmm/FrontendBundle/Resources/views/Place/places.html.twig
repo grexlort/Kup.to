@@ -1,0 +1,44 @@
+{% include 'MmmFrontendBundle::layout.html.twig' %}
+
+{% block container %}
+    <div class="container" ng-init="id = {{ id }}">
+        <div class="col-sm-8 col-sm-offset-2">
+            {#place list#}
+            <div class="place" ng-controller="taskCtrl">
+                <img src="{{ asset('logo.png') }}" alt=""/>
+                {#add div#}
+                <div ng-show="addNew.status == true" class="panel panel-success">
+                    <div class="panel-body">
+                        <div class="col-sm-5"><input type="text" ng-model="addNew.name" class="form-control" placeholder="Name"></div>
+                        <div class="col-sm-3"><input type="text" ng-model="addNew.color" class="form-control" placeholder="Color"></div>
+                        <div class="col-sm-4"><button ng-click="addNew.add()" >Save</button></div>
+                    </div>
+                </div>
+
+                <div ng-repeat="place in places" class="panel panel-success item">
+                    <div class="panel-body">
+                        <div class="col-sm-7" ng-class="
+                        {
+                        colorRed: 'red' == place.color,
+                        colorBlue: 'blue' == place.color,
+                        }
+                        ">
+                            [[ place.name ]]
+                        </div>
+                        <div class="col-sm-1"><a href="#" class="btn btn-link">zdj1</a></div>
+                        <div class="col-sm-1"><a href="#" class="btn btn-link">zdj2</a></div>
+                        <div class="col-sm-3"><a href="places/[[place.id]]" class="btn btn-default">Go</a></div>
+                    </div>
+                </div>
+            </div>
+
+            {#invite list#}
+            {#<div ng-controller="InviteCtrl">#}
+
+            {#</div>#}
+        </div>
+        <div class="col-sm-8 col-sm-offset-2" style="border-top: 2px solid forestgreen">
+
+        </div>
+    </div>
+{% endblock container %}

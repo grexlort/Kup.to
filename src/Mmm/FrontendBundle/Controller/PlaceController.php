@@ -17,11 +17,11 @@ class PlaceController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="_mmm_frontend_place_places")
+     * @Route("/places/{id}", name="_mmm_frontend_place_places")
      */
-    public function placesAction()
+    public function placesAction($id)
     {
-        return $this->render('MmmFrontendBundle:Place:places.html.twig');
+        return $this->render('MmmFrontendBundle:Place:places.html.twig', array('id' => $id));
     }
 
 
