@@ -14,16 +14,16 @@
             <argument type="service" id="security.token_storage" />
             <tag name="doctrine.event_listener" event="prePersist" />
         </service>
-<!--        <service id="mmm_api.maielr" class="%mmm_api.mailer.class%">
+        <service id="mmm_api.mailer" class="%mmm_api.mailer.class%">
             <argument type="service" id="mailer" />
             <argument type="service" id="twig" />
             <argument type="collection">
                 <argument key="template" type="collection">
-                    <argument key="assign_user_to_task">%mmm_mailer.template.user.assign.task%</argument>
+                    <!--<argument key="assign_user_to_task">%mmm_mailer.template.user.assign.task%</argument>-->
                 </argument>
-                <argument key="from_email">%mmm_mailer.form_email%</argument>
+                <!--<argument key="from_email">%mmm_mailer.form_email%</argument>-->
             </argument>
-        </service>-->
+        </service>
     </services>
 
 </container>
