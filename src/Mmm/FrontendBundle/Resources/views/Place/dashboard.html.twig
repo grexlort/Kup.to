@@ -6,10 +6,12 @@
             {#place list#}
             <div class="place">
                 {#add div#}
-                <div ng-show="addNew.status == true">
-                    <input type="text" ng-model="addNew.name">
-                    <input type="text" ng-model="addNew.color">
-                    <button ng-click="addNew.add()" >Save</button>
+                <div ng-show="addNew.status == true" class="panel panel-success">
+                    <div class="panel-body">
+                        <div class="col-sm-5"><input type="text" ng-model="addNew.name" class="form-control" placeholder="Name"></div>
+                        <div class="col-sm-3"><input type="text" ng-model="addNew.color" class="form-control" placeholder="Color"></div>
+                        <div class="col-sm-4"><button ng-click="addNew.add()" >Save</button></div>
+                    </div>
                 </div>
 
                 <div ng-repeat="place in places" class="panel panel-success item">
