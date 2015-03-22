@@ -117,7 +117,7 @@ class User extends BaseUser
     /**
      * Get createdTasks
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCreatedTasks()
     {
@@ -150,7 +150,7 @@ class User extends BaseUser
     /**
      * Get assignedTasks
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAssignedTasks()
     {
@@ -183,7 +183,7 @@ class User extends BaseUser
     /**
      * Get createdPlaces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCreatedPlaces()
     {

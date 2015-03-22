@@ -46,10 +46,15 @@ class Place implements AuthorInterface
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="createdPlaces", cascade={"persist"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
      */
     private $createdBy;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="place", cascade={"persist", "remove"} , orphanRemoval=true)
+     */
+    private $tasks;
 
     public function __construct() {
         $this->createdAt = new \DateTime();
@@ -147,7 +152,7 @@ class Place implements AuthorInterface
     /**
      * Get createdBy
      *
-     * @return \Mmm\ApiBundle\Entity\User
+     * @return User
      */
     public function getCreatedBy()
     {
@@ -155,9 +160,42 @@ class Place implements AuthorInterface
     }
 
     /**
+     * Add tasks
+     *
+     * @param Task $tasks
+     * @return Place
+     */
+    public function addTask(Task $tasks)
+    {
+        $this->tasks[] = $tasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove tasks
+     *
+     * @param Task $tasks
+     */
+    public function removeTask(Task $tasks)
+    {
+        $this->tasks->removeElement($tasks);
+    }
+
+    /**
+     * Get tasks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
      * Is the given User the author of this Place
      *
-     * @param \Mmm\ApiBundle\Entity\User $user
+     * @param User $user
      *
      * @return bool
      */

@@ -1,27 +1,47 @@
 <?php
 
 namespace Mmm\ApiBundle\Controller;
-use Mmm\ApiBundle\Entity\Task;
-use Mmm\ApiBundle\Form\TaskType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
+use FOS\RestBundle\View\View;
+use Mmm\ApiBundle\Entity\Place;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Mmm\ApiBundle\Entity\Task;
+use Mmm\ApiBundle\Form\TaskType;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class UserController
  * @package Mmm\ApiBundle\Controller
+ *
+ * @RouteResource("Place")
  */
 class TaskController extends Controller
 {
     /**
+     * Get task for logged user
+     *
+     * @QueryParam(name="offset", description="Offset", default="0")
+     * @QueryParam(name="limit", description="Limit", default="20")
+     *
+     * @ApiDoc(
+     *      description="Get places for logged user",
+     *      statusCodes={
+     *          200="Success"
+     *      }
+     *  )
      */
-    public function indexAction()
+    public function getPlaceAction(Place $place)
     {
-        $repository = $this->getDoctrine()->getRepository('MmmApiBundle:Task');
+        $tasks = $this->getDoctrine()
+            ->getRepository('MmmApiBundle:Task')
+            ->findAuthorTasksByPlace($place, $this->getUser())
+        ;
 
-        return array(
-            'tasks' => $repository->findAuthorTasks($this->getUser())
-        );
+        return View::create($tasks);
     }
 
     /**

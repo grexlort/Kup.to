@@ -3,6 +3,7 @@
 namespace Mmm\ApiBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Mmm\ApiBundle\Entity\Place;
 use Mmm\ApiBundle\Entity\User;
 
 /**
@@ -13,9 +14,10 @@ use Mmm\ApiBundle\Entity\User;
  */
 class TaskRepository extends EntityRepository
 {
-    public function findAuthorTasks(User $user)
+    public function findAuthorTasksByPlace(Place $place, User $user)
     {
         return $this->findBy(array(
+            'place' => $place,
             'createdBy' => $user
         ));
     }

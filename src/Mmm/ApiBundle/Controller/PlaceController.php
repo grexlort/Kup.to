@@ -10,6 +10,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 use Mmm\ApiBundle\Entity\Place;
 use Mmm\ApiBundle\Form\PlaceType;
 
@@ -17,7 +18,7 @@ use Mmm\ApiBundle\Form\PlaceType;
  * Class PlaceController
  * @package Mmm\ApiBundle\Controller
  */
-class PlaceController extends Controller
+class PlaceController extends Controller implements ClassResourceInterface
 {
     /**
      * Get places for logged user
@@ -32,7 +33,7 @@ class PlaceController extends Controller
      *      }
      *  )
      */
-    public function getPlacesAction(ParamFetcher $paramFetcher)
+    public function cgetAction(ParamFetcher $paramFetcher)
     {
         $offset = $paramFetcher->get('offset');
         $limit = $paramFetcher->get('limit');
@@ -57,7 +58,7 @@ class PlaceController extends Controller
      *      }
      *  )
      */
-    public function postPlacesAction(Request $request)
+    public function postAction(Request $request)
     {
         return $this->processPlaceForm($request);
     }
@@ -76,7 +77,7 @@ class PlaceController extends Controller
      *      }
      *  )
      */
-    public function patchPlaceAction(Request $request, Place $place)
+    public function patchAction(Request $request, Place $place)
     {
         $this->processPlaceForm($request, $place, 'PATH');
     }
@@ -93,7 +94,7 @@ class PlaceController extends Controller
      *      }
      *  )
      */
-    public function deletePlaceAction(Request $request, Place $place)
+    public function deleteAction(Request $request, Place $place)
     {
         $em = $this->getDoctrine()->getManager();
 

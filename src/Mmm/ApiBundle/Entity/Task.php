@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Task implements AuthorInterface
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -67,6 +66,12 @@ class Task implements AuthorInterface
      * @ORM\JoinColumn(name="assignee", referencedColumnName="id", nullable=false)
      */
     private $assignee;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Place", inversedBy="tasks", cascade={"persist"})
+     * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
+     */
+    private $place;
 
     public function __construct() {
         $this->createdAt = new \DateTime();
@@ -200,7 +205,7 @@ class Task implements AuthorInterface
     /**
      * Get createdBy
      *
-     * @return \Mmm\ApiBundle\Entity\User
+     * @return User
      */
     public function getCreatedBy()
     {
@@ -210,7 +215,7 @@ class Task implements AuthorInterface
     /**
      * Set assignee
      *
-     * @param \Mmm\ApiBundle\Entity\User $assignee
+     * @param User $assignee
      * @return Task
      */
     public function setAssignee(User $assignee = null)
@@ -223,7 +228,7 @@ class Task implements AuthorInterface
     /**
      * Get assignee
      *
-     * @return \Mmm\ApiBundle\Entity\User
+     * @return User
      */
     public function getAssignee()
     {
@@ -231,9 +236,32 @@ class Task implements AuthorInterface
     }
 
     /**
+     * Set place
+     *
+     * @param Place $place
+     * @return Task
+     */
+    public function setPlace(Place $place)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * Get place
+     *
+     * @return Place
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
      * Is the given User the author of this Task
      *
-     * @param \Mmm\ApiBundle\Entity\User $user
+     * @param User $user
      *
      * @return bool
      */
