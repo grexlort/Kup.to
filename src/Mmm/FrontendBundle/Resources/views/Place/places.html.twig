@@ -1,10 +1,10 @@
 {% include 'MmmFrontendBundle::layout.html.twig' %}
 
 {% block container %}
-    <div class="container">
+    <div class="container" ng-init="id = {{ id }}">
         <div class="col-sm-8 col-sm-offset-2">
             {#place list#}
-            <div class="place">
+            <div class="place" ng-controller="taskCtrl">
                 <img src="{{ asset('logo.png') }}" alt=""/>
                 {#add div#}
                 <div ng-show="addNew.status == true" class="panel panel-success">

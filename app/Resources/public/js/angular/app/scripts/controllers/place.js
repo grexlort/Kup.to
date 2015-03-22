@@ -22,7 +22,7 @@ angular.module('angularApp')
             color: '',
             status: false,
             add: function () {
-                $http.post('api/places',
+                $http.post('/app_dev.php/api/places',
                     {
                         name: this.name,
                         color: this.color
@@ -32,6 +32,7 @@ angular.module('angularApp')
                         //$scope.places = data;
                         console.log(data);
                         $scope.loadPlaces();
+                        this.status = false;
                     }).
                     error(function (data, status, headers, config) {
                         console.log(data);
@@ -39,7 +40,7 @@ angular.module('angularApp')
             }
         };
         $scope.loadPlaces = function () {
-            $http.get('api/places').
+            $http.get('/app_dev.php/api/places').
                 success(function (data) {
                     $scope.places = data;
                     console.log(data);
