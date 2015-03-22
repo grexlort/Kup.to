@@ -34,8 +34,8 @@ class PlaceController extends Controller
      */
     public function getPlacesAction(ParamFetcher $paramFetcher)
     {
-        $offset = (int) $paramFetcher->get('offset');
-        $limit = (int) $paramFetcher->get('limit');
+        $offset = $paramFetcher->get('offset');
+        $limit = $paramFetcher->get('limit');
 
         $places = $this->getDoctrine()
             ->getRepository('MmmApiBundle:Place')
@@ -110,13 +110,14 @@ class PlaceController extends Controller
         ));
 
         if ($form->handleRequest($request)->isValid()) {
+            $status = null === $place ? Response::HTTP_CREATED : Response::HTTP_OK;
+
             $em = $this->getDoctrine()->getManager();
 
             $place = $place ?: $form->getData();
             $em->persist($place);
             $em->flush($place);
 
-            $status = null === $place ? Response::HTTP_CREATED : Response::HTTP_OK;
             return View::create($place, $status);
         }
 
