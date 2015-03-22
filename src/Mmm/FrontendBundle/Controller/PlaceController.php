@@ -15,4 +15,14 @@ class PlaceController extends Controller
     {
         return $this->render('MmmFrontendBundle:Place:dashboard.html.twig');
     }
+
+    /**
+     * @Route("/{id}", name="_mmm_frontend_place_places")
+     */
+    public function placesAction()
+    {
+        return $this->render('MmmFrontendBundle:Place:places.html.twig');
+    }
+
+
 }

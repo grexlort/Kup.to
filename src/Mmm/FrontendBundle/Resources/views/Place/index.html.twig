@@ -1,0 +1,12 @@
+{% extends "MmmFrontendBundle::layout.html.twig" %}
+
+{% block container %}
+    <a href="{{ path('_mmm_task_add') }}">Add</a>
+
+
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task.content }} <a href="{{ path('_mmm_task_edit', {'id': task.id}) }}">Edit</a></li>
+        {% endfor %}
+    </ul>
+{% endblock container %}
