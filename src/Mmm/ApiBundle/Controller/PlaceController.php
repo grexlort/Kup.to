@@ -34,8 +34,8 @@ class PlaceController extends Controller
      */
     public function getPlacesAction(ParamFetcher $paramFetcher)
     {
-        $offset = (int) $paramFetcher->get('offset');
-        $limit = (int) $paramFetcher->get('limit');
+        $offset = $paramFetcher->get('offset');
+        $limit = $paramFetcher->get('limit');
 
         $places = $this->getDoctrine()
             ->getRepository('MmmApiBundle:Place')
