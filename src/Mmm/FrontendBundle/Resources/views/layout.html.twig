@@ -1,7 +1,30 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button type="button" class="btn btn-default btn-lg">
+                            <span class="glyphicon glyphicon-add"></span>
+                            {% trans %}ADD{% endtrans %}
+                        </button>
+                    </li>
+                </ul>
 
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button type="button" class="btn btn-default btn-lg">
+                            {% trans %}PROFIL{% endtrans %}
+                        </button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    
     {% block container %}
     {% endblock container %}
 {% endblock body %}

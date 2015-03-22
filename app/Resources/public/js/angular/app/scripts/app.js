@@ -2,22 +2,15 @@
 
 /**
  * @ngdoc overview
- * @name jsApp
+ * @name angularApp
  * @description
- * # jsApp
+ * # angularApp
  *
  * Main module of the application.
  */
 angular
-  .module('jsApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+  .module('angularApp', [])
+  .config(function () {
 //        $routeProvider
 //            .when('/', {
 //                templateUrl: 'views/main.html',
