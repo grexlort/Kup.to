@@ -1,19 +1,25 @@
 {% include 'MmmFrontendBundle::layout.html.twig' %}
 
 {% block container %}
-<div >
+    <div>
 
-    {#place list#}
-    <div ng-controller="PlaceCtrl">
-        <div>
+        {#place list#}
 
+        <div ng-controller="PlaceCtrl" class="place">
+            <div class="container">
+                <div class="item">
+                    <span>Name</span>
+                    <span>Mordy</span>
+                    <i>Dodaj</i>
+                    <i>Przejdz</i>
+                </div>
+            </div>
         </div>
+
+        {#invite list#}
+        {#<div ng-controller="InviteCtrl">#}
+
+        {#</div>#}
+
     </div>
-
-    {#invite list#}
-    {#<div ng-controller="InviteCtrl">#}
-
-    {#</div>#}
-
-</div>
 {% endblock container %}
