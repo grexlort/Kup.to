@@ -94,7 +94,7 @@ class PlaceController extends Controller implements ClassResourceInterface
      *      }
      *  )
      */
-    public function deleteAction(Request $request, Place $place)
+    public function deleteAction(Place $place)
     {
         $em = $this->getDoctrine()->getManager();
 
