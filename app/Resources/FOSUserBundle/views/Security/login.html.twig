@@ -1,6 +1,6 @@
-{% extends "MmmFrontendBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block container %}
+{% block body %}
 {% if error %}
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
@@ -28,16 +28,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-5"><input type="submit" id="_submit" class="btn btn-primary" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" /></div>
-                <div class="col-md-4"><a href="{{ path('fos_user_registration_register') }}">Register</a></div>
+                <div class="col-md-2"><input type="submit" id="_submit" class="btn btn-primary" name="_submit" value="Login" /></div>
+                <div class="col-md-5"><a href="{{ path('fos_user_registration_register') }}">Register</a></div>
             </div>
         </fieldset>
-
-        {#<label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>#}
-        {#<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />#}
-
-        {#<label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>#}
-        {#<input type="password" id="password" name="_password" required="required" />#}
     </form>
 </div>
-{% endblock container %}
+{% endblock body %}

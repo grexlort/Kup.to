@@ -5,3 +5,6 @@
 .place .item {
 
 }
+.btn {
+    border-radius: 0;
+}
