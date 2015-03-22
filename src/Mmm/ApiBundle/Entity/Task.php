@@ -21,9 +21,9 @@ class Task implements AuthorInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="string" , nullable=true)
+     * @ORM\Column(name="name", type="string" , nullable=false)
      */
-    private $content;
+    private $name;
 
     /**
      * @var \DateType
@@ -87,24 +87,24 @@ class Task implements AuthorInterface
     }
 
     /**
-     * Set content
+     * Set name
      *
-     * @param string $content
+     * @param string $name
      * @return Task
      */
-    public function setContent($content) {
-        $this->content = $content;
+    public function setName($name) {
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get content
+     * Get name
      *
      * @return string 
      */
-    public function getContent() {
-        return $this->content;
+    public function getName() {
+        return $this->name;
     }
 
     /**
