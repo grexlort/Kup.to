@@ -31,6 +31,8 @@ class UserController extends Controller implements ClassResourceInterface
         $em->persist($task);
         $em->flush($task);
 
+        $this->get('mmm_api.maielr')->sendAssignUserToTaskMessage($user, $task);
+
         return View::create($task, Response::HTTP_OK);
     }
 
