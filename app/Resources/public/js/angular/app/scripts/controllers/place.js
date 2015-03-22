@@ -8,6 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-    .controller('PlaceCtrl', function ($scope) {
+    .controller('PlaceCtrl', function ($scope, PlaceManager) {
+
 
     });

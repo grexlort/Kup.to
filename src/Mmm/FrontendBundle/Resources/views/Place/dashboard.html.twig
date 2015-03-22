@@ -1,25 +1,27 @@
 {% include 'MmmFrontendBundle::layout.html.twig' %}
 
 {% block container %}
-    <div>
-
-        {#place list#}
-
-        <div ng-controller="PlaceCtrl" class="place">
-            <div class="container">
-                <div class="item">
-                    <span>Name</span>
-                    <span>Mordy</span>
-                    <i>Dodaj</i>
-                    <i>Przejdz</i>
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            {#place list#}
+            <div ng-controller="PlaceCtrl" class="place">
+                <div class="panel panel-success item">
+                    <div class="panel-body">
+                        <div class="col-sm-7">NAME</div>
+                        <div class="col-sm-1"><a href="#" class="btn btn-link">zdj1</a></div>
+                        <div class="col-sm-1"><a href="#" class="btn btn-link">zdj2</a></div>
+                        <div class="col-sm-3"><a href="#" class="btn btn-default">Go</a></div>
+                    </div>
                 </div>
             </div>
+
+            {#invite list#}
+            {#<div ng-controller="InviteCtrl">#}
+
+            {#</div>#}
         </div>
+        <div class="col-sm-8 col-sm-offset-2" style="border-top: 2px solid forestgreen">
 
-        {#invite list#}
-        {#<div ng-controller="InviteCtrl">#}
-
-        {#</div>#}
-
+        </div>
     </div>
 {% endblock container %}
