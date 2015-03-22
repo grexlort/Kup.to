@@ -32,6 +32,7 @@ angular.module('angularApp')
                         //$scope.places = data;
                         console.log(data);
                         $scope.loadPlaces();
+                        this.status = false;
                     }).
                     error(function (data, status, headers, config) {
                         console.log(data);

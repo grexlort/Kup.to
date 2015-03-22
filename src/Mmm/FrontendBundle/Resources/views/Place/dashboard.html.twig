@@ -5,6 +5,7 @@
         <div class="col-sm-8 col-sm-offset-2">
             {#place list#}
             <div class="place">
+                <img src="{{ asset('logo.png') }}" alt=""/>
                 {#add div#}
                 <div ng-show="addNew.status == true">
                     <input type="text" ng-model="addNew.name">
@@ -14,7 +15,14 @@
 
                 <div ng-repeat="place in places" class="panel panel-success item">
                     <div class="panel-body">
-                        <div class="col-sm-7" ng-class="{colorRed: 'red' == place.color }">[[ place.name ]]</div>
+                        <div class="col-sm-7" ng-class="
+                        {
+                        colorRed: 'red' == place.color,
+                        colorBlue: 'blue' == place.color,
+                        }
+                        ">
+                            [[ place.name ]]
+                        </div>
                         <div class="col-sm-1"><a href="#" class="btn btn-link">zdj1</a></div>
                         <div class="col-sm-1"><a href="#" class="btn btn-link">zdj2</a></div>
                         <div class="col-sm-3"><a href="places/[[place.id]]" class="btn btn-default">Go</a></div>
