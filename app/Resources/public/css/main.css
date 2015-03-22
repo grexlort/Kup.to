@@ -8,9 +8,10 @@
 .btn {
     border-radius: 0;
 }
-.color-red {
+.colorRed {
     color: red;
+    /*display: none;*/
 }
-.color-blue {
+.colorBlue {
     color: blue;
 }

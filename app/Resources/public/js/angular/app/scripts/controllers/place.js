@@ -24,27 +24,30 @@ angular.module('angularApp')
             add: function () {
                 $http.post('api/places',
                     {
-                        name:this.name,
+                        name: this.name,
                         color: this.color
                     }
                 ).
                     success(function (data) {
                         //$scope.places = data;
                         console.log(data);
+                        $scope.loadPlaces();
                     }).
                     error(function (data, status, headers, config) {
                         console.log(data);
                     });
             }
         };
-
-        $http.get('api/places').
-            success(function (data) {
-                $scope.places = data;
-                console.log(data);
-            }).
-            error(function (data, status, headers, config) {
-                console.log(data);
-            });
+        $scope.loadPlaces = function () {
+            $http.get('api/places').
+                success(function (data) {
+                    $scope.places = data;
+                    console.log(data);
+                }).
+                error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+        }
+        $scope.loadPlaces();
 
     });
