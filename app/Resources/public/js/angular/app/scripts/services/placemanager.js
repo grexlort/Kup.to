@@ -10,14 +10,16 @@
 angular.module('angularApp')
     .factory('PlaceManager', function ($http, $q) {
         return {
+            placeData: '',
             getPlaces: function () {
                 var deffered = $q.defer();
                 var _this = this;
 
-                $http.get('app.php/api/places').
+                $http.get('api/places').
                     success(function (data) {
                         console.log(data);
                         deffered.resolve(data);
+                        _this.placeData = data;
                     }).
                     error(function (data, status, headers, config) {
                         console.log(data);
